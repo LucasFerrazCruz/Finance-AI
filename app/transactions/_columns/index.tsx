@@ -2,7 +2,7 @@
 
 import { Transaction } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
-import TransactionTypeBadge from "../_components/badge-type";
+import TransactionTypeBadge from "../_components/type-badge";
 import { Button } from "@/app/_components/ui/button";
 import { TrashIcon } from "lucide-react";
 import {
@@ -19,9 +19,9 @@ export const transactionColumns: ColumnDef<Transaction>[] = [
   {
     accessorKey: "type",
     header: "Tipo",
-    cell: ({ row: { original: transaction } }) => {
-      <TransactionTypeBadge transaction={transaction} />;
-    },
+    cell: ({ row: { original: transaction } }) => (
+      <TransactionTypeBadge transaction={transaction} />
+    ),
   },
   {
     accessorKey: "category",
@@ -31,7 +31,7 @@ export const transactionColumns: ColumnDef<Transaction>[] = [
   },
   {
     accessorKey: "paymentMethod",
-    header: "Método de pagamento",
+    header: "Método de Pagamento",
     cell: ({ row: { original: transaction } }) =>
       TRANSACTION_PAYMENT_METHOD_LABELS[transaction.paymentMethod],
   },
@@ -39,7 +39,7 @@ export const transactionColumns: ColumnDef<Transaction>[] = [
     accessorKey: "date",
     header: "Data",
     cell: ({ row: { original: transaction } }) =>
-      new Date(transaction.date).toLocaleDateString("pt-br", {
+      new Date(transaction.date).toLocaleDateString("pt-BR", {
         day: "2-digit",
         month: "long",
         year: "numeric",

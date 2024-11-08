@@ -34,9 +34,9 @@ import {
 import { DatePicker } from "./ui/date-picker";
 import { z } from "zod";
 import {
+  TransactionType,
   TransactionCategory,
   TransactionPaymentMethod,
-  TransactionType,
 } from "@prisma/client";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -78,9 +78,9 @@ type FormSchema = z.infer<typeof formSchema>;
 
 const UpsertTransactionDialog = ({
   isOpen,
-  setIsOpen,
   defaultValues,
   transactionId,
+  setIsOpen,
 }: UpsertTransactionDialogProps) => {
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
@@ -120,7 +120,7 @@ const UpsertTransactionDialog = ({
       <DialogContent>
         <DialogHeader>
           <DialogTitle>
-            {isUpdate ? "Atualizar " : "Criar "}transação
+            {isUpdate ? "Atualizar" : "Criar"} transação
           </DialogTitle>
           <DialogDescription>Insira as informações abaixo</DialogDescription>
         </DialogHeader>
@@ -140,7 +140,6 @@ const UpsertTransactionDialog = ({
                 </FormItem>
               )}
             />
-
             <FormField
               control={form.control}
               name="amount"
@@ -150,6 +149,7 @@ const UpsertTransactionDialog = ({
                   <FormControl>
                     <MoneyInput
                       placeholder="Digite o valor..."
+                      value={field.value}
                       onValueChange={({ floatValue }) =>
                         field.onChange(floatValue)
                       }
@@ -161,7 +161,6 @@ const UpsertTransactionDialog = ({
                 </FormItem>
               )}
             />
-
             <FormField
               control={form.control}
               name="type"
@@ -174,7 +173,7 @@ const UpsertTransactionDialog = ({
                   >
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="Selecione o tipo..." />
+                        <SelectValue placeholder="Select a verified email to display" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
@@ -189,7 +188,6 @@ const UpsertTransactionDialog = ({
                 </FormItem>
               )}
             />
-
             <FormField
               control={form.control}
               name="category"
@@ -217,7 +215,6 @@ const UpsertTransactionDialog = ({
                 </FormItem>
               )}
             />
-
             <FormField
               control={form.control}
               name="paymentMethod"
@@ -245,7 +242,6 @@ const UpsertTransactionDialog = ({
                 </FormItem>
               )}
             />
-
             <FormField
               control={form.control}
               name="date"
@@ -257,7 +253,6 @@ const UpsertTransactionDialog = ({
                 </FormItem>
               )}
             />
-
             <DialogFooter>
               <DialogClose asChild>
                 <Button type="button" variant="outline">
