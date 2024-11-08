@@ -1,5 +1,6 @@
 import { Transaction, TransactionType } from "@prisma/client";
-import { Badge, CircleIcon } from "lucide-react";
+import { CircleIcon } from "lucide-react";
+import { Badge } from "@/app/_components/ui/badge";
 
 interface TransactionTypeBadgeProps {
   transaction: Transaction;
@@ -16,8 +17,8 @@ const TransactionTypeBadge = ({ transaction }: TransactionTypeBadgeProps) => {
   }
   if (transaction.type === TransactionType.EXPENSE) {
     return (
-      <Badge className="text-danger bg-danger bg-muted bg-opacity-10 font-bold hover:bg-muted">
-        <CircleIcon className="fill-danger mr-2" size={10} />
+      <Badge className="bg-danger bg-muted bg-opacity-10 font-bold text-danger hover:bg-muted">
+        <CircleIcon className="mr-2 fill-danger" size={10} />
         Despesa
       </Badge>
     );
@@ -29,4 +30,5 @@ const TransactionTypeBadge = ({ transaction }: TransactionTypeBadgeProps) => {
     </Badge>
   );
 };
+
 export default TransactionTypeBadge;
