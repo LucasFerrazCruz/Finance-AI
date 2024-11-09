@@ -1,8 +1,8 @@
 import { TransactionCategory, TransactionType } from "@prisma/client";
 
-export interface TransactionPercentagePerType {
+export type TransactionPercentagePerType = {
   [key in TransactionType]: number;
-}
+};
 
 export interface TotalExpensePerCategory {
   category: TransactionCategory;
